@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Soul Phrase - Persona 3 Reload Typography</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Velvet Room Splash -->
+<div id="velvetRoom">
+  <h1>Velvet Room</h1>
+  <button id="enterBtn">Enter</button>
+</div>
+
+<!-- Main Content -->
+<div id="mainContent">
+  <!-- SEES icon SVG -->
+  <svg id="seesIcon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" >
+    <path fill="#00C3FF" d="M32 0c8 0 14.5 6.5 14.5 14.5S40 29 32 29 17.5 22.5 17.5 14.5 24 0 32 0z"/>
+    <path fill="#001F2F" d="M32 5c6.35 0 11.5 5.15 11.5 11.5S38.35 28 32 28 20.5 22.85 20.5 16.5 25.65 5 32 5z"/>
+    <circle cx="32" cy="14.5" r="4" fill="#00C3FF"/>
+  </svg>
+
+  <!-- Ocean waves -->
+  <div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+  <!-- Falling lyrics container -->
+  <div id="lyricsFall"></div>
+
+  <!-- Hidden audio player -->
+  <audio id="audio" src="soulphrase.mp3" loop></audio>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
