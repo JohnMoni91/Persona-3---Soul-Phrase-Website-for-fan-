@@ -1,140 +1,207 @@
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-  /* Reset */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
+/* Reset */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
 
-  html, body {
-    width: 100%; height: 100%;
-    font-family: 'Orbitron', monospace, sans-serif;
-    background: #000;
-    overflow: hidden;
-    color: #00c3ff;
-  }
+html, body {
+  width: 100%; height: 100%;
+  font-family: 'Orbitron', monospace, sans-serif;
+  background: #000;
+  overflow: hidden;
+  color: #00c3ff;
+}
 
-  /* Velvet Room splash */
-  #velvetRoom {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(135deg, #0a0a0a, #003344);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000;
-    color: #00d1ff;
-    user-select: none;
-    transition: filter 0.6s ease;
-  }
-  #velvetRoom h1 {
-    font-size: 4rem;
-    text-shadow: 0 0 15px #00d1ff;
-    margin-bottom: 2rem;
-  }
-  #velvetRoom button {
-    padding: 1rem 3rem;
-    font-size: 1.5rem;
-    border: 2px solid #00c3ff;
-    background: transparent;
-    color: #00c3ff;
-    cursor: pointer;
-    border-radius: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  #velvetRoom button:hover {
-    background-color: #00c3ff;
-    color: #001f2f;
-  }
+/* Velvet Room splash */
+#velvetRoom {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0a0a0a, #001f2f); /* Ajustei o gradiente para ser mais escuro */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  color: #00d1ff;
+  user-select: none;
+}
+#velvetRoom h1 {
+  font-size: 4rem;
+  text-shadow: 0 0 15px #00d1ff;
+  margin-bottom: 2rem;
+}
+#velvetRoom p {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  max-width: 600px;
+  text-align: center;
+  color: #a9d1ff;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 0 5px #005a78;
+}
+#velvetRoom button {
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  border: 2px solid #00c3ff;
+  background: transparent;
+  color: #00c3ff;
+  cursor: pointer;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-family: 'Orbitron', monospace, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+#velvetRoom button:hover {
+  background-color: #00c3ff;
+  color: #001f2f;
+}
 
-  /* Main content container */
-  #mainContent {
-    display: none;
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background: #001a33;
-    color: #00c3ff;
-  }
+/* Efeito de Estilhaço (Shatter Effect) */
+#velvetRoom.shatter {
+  animation: shatter-test 0.8s ease forwards;
+}
 
-  /* Ocean Waves */
-  .ocean {
-    position: fixed;
-    bottom: 0; left: 0;
-    width: 100%; height: 15vh;
-    background: linear-gradient(to top, #002c4f, transparent);
-    overflow: hidden;
-    z-index: 1;
+@keyframes shatter-test {
+  0% {
+    opacity: 1;
+    transform: scale(1);
   }
-  .wave {
-    position: absolute;
-    bottom: 0;
-    width: 200%;
-    height: 100px;
-    background: rgba(0, 195, 255, 0.15);
-    border-radius: 100% 50% 0 0 / 50% 100% 0 0;
-    animation: waveMove 12s linear infinite;
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
   }
-  .wave:nth-child(2) {
-    bottom: 15px;
-    animation-duration: 18s;
-    opacity: 0.4;
-  }
-  @keyframes waveMove {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+}
 
-  /* SEES Icon */
-  #seesIcon {
-    position: fixed;
-    top: 20px; left: 20px;
-    width: 64px; height: 64px;
-    z-index: 1000;
-    filter: drop-shadow(0 0 5px #00c3ff);
-  }
+#velvetRoom.shatter::before,
+#velvetRoom.shatter::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  z-index: -1;
+}
+#velvetRoom.shatter::before {
+  animation: shatter-pseudo-1 0.8s cubic-bezier(0.755, 0.05, 0.855, 0.06) forwards;
+}
+#velvetRoom.shatter::after {
+  animation: shatter-pseudo-2 0.8s cubic-bezier(0.755, 0.05, 0.855, 0.06) forwards;
+  animation-delay: 0.05s;
+}
 
-  /* Lyrics falling container */
-  #lyricsFall {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    overflow: visible;
-  }
+@keyframes shatter-main {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+@keyframes shatter-pseudo-1 {
+  0% { transform: translate(0, 0); clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+  100% { transform: translate(-150px, -100px); clip-path: polygon(0% 0%, 50% 0%, 20% 100%, 0% 100%); opacity: 0; }
+}
+@keyframes shatter-pseudo-2 {
+  0% { transform: translate(0, 0); clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+  100% { transform: translate(150px, 100px); clip-path: polygon(51% 0%, 100% 0%, 100% 100%, 80% 100%); opacity: 0; }
+}
 
-  /* Each falling lyric */
-  .falling-text {
-    position: fixed;
-    color: #00c3ff;
-    font-size: 1.3rem;
-    white-space: nowrap;
-    user-select: none;
+/* Main content container */
+#mainContent {
+  display: none;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #001a33;
+  color: #00c3ff;
+}
+
+/* Ocean Waves */
+.ocean {
+  position: fixed;
+  bottom: 0; left: 0;
+  width: 100%; height: 15vh;
+  background: linear-gradient(to top, #002c4f, transparent);
+  overflow: hidden;
+  z-index: 1;
+}
+.wave {
+  position: absolute;
+  bottom: 0;
+  width: 200%;
+  height: 100px;
+  background: rgba(0, 195, 255, 0.15);
+  border-radius: 100% 50% 0 0 / 50% 100% 0 0;
+  animation: waveMove 12s linear infinite;
+}
+.wave:nth-child(2) {
+  bottom: 15px;
+  animation-duration: 18s;
+  opacity: 0.4;
+}
+@keyframes waveMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* SEES Icon */
+#seesIcon {
+  position: fixed;
+  top: 20px; left: 20px;
+  width: 64px; height: 64px;
+  z-index: 1000;
+  filter: drop-shadow(0 0 5px #00c3ff);
+}
+
+/* Lyrics falling container */
+#lyricsFall {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Each falling lyric */
+.falling-text {
+  position: fixed;
+  color: #00c3ff;
+  font-size: 1.3rem;
+  white-space: nowrap;
+  user-select: none;
+  animation: 
+    pixel-reveal 0.8s ease-out forwards,
+    fallDown 12s linear 0.8s forwards;
+}
+
+@keyframes pixel-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    text-shadow: 
+      -8px -8px 0px rgba(0, 195, 255, 0.1), 
+      8px 8px 0px rgba(0, 195, 255, 0.1);
+  }
+  50% {
+    opacity: 0.9;
+    filter: blur(2px);
+    text-shadow: 
+      -3px -3px 0px rgba(0, 195, 255, 0.2), 
+      3px 3px 0px rgba(0, 195, 255, 0.2);
+  }
+  100% {
     opacity: 0.85;
+    filter: blur(0);
     text-shadow: 0 0 5px #00bcd4;
-    animation-name: fallDown;
-    animation-timing-function: linear;
   }
-  @keyframes fallDown {
-    0% {
-      transform: translateY(-50px);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(110vh);
-      opacity: 0;
-    }
-  }
+}
 
-  /* Glitch / Distortion animation */
-  .glitch {
-    animation: glitchAnim 0.5s ease forwards;
+@keyframes fallDown {
+  0% {
+    transform: translateY(-5vh);
+    opacity: 0.85;
   }
-  @keyframes glitchAnim {
-    0% { filter: none; }
-    50% { filter: blur(4px) contrast(150%) saturate(200%); }
-    100% { filter: none; }
+  100% {
+    transform: translateY(105vh);
+    opacity: 0;
   }
+}
